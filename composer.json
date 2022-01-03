@@ -1,0 +1,21 @@
+{
+    "name": "cecez/dolly",
+    "description": "Pacote de cache para usar em arquivos Blade do Laravel.",
+    "license": "MIT",
+    "keywords": ["Laravel", "cache", "Blade"],
+    "autoload": {
+        "psr-4": {
+            "Cecez\\Dolly\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Cezar Castro Rosa",
+            "email": "cecez86@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "9.x-dev"
+    }
+}
