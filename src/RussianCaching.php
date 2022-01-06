@@ -2,19 +2,25 @@
 
 namespace Cecez\Dolly;
 
-
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Database\Eloquent\Model;
 
 class RussianCaching
 {
     protected static array $keys = [];
+    protected Repository $cache;
+
+    public function __construct(Repository $cacheRepository)
+    {
+        $this->cache = $cacheRepository;
+    }
 
     public static function setUp($model)
     {
         ob_start();
 
         static::$keys[] = $key = $model->getCacheKey();
-        return Cache::tags('views')->has($key);
+        return $this->cache->tags('views')->has($key);
     }
 
     public static function tearDown()
@@ -23,8 +29,34 @@ class RussianCaching
 
         $html = ob_get_clean();
 
-        return Cache::tags('views')->rememberForever($key, function () use ($html) {
+        return $this->cache->tags('views')->rememberForever($key, function () use ($html) {
             return $html;
         });
+    }
+
+    public function cache(Model|string $key, string $fragment)
+    {
+        $key = $this->normalizedKey($key);
+        return $this->cache
+            ->tags('views')
+            ->rememberForever(
+                $key,
+                function () use ($fragment) { return $fragment; }
+            );
+    }
+
+    public function hasCached(Model|string $key): bool
+    {
+        $key = $this->normalizedKey($key);
+        return $this->cache->tags('views')->has($key);
+    }
+
+    private function normalizedKey(Model|string $key): string
+    {
+        if ($key instanceof Model) {
+            return $key->getCacheKey();
+        }
+
+        return $key;
     }
 }
