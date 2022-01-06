@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5346c8aa3a6f35b60cfb696aeef89f95",
+    "content-hash": "1c7c8f5c21b950fed1d660ee0053e9c8",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1054,6 +1054,67 @@
                 }
             ],
             "time": "2020-11-10T19:05:51+00:00"
+        },
+        {
+            "name": "illuminate/cache",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/cache.git",
+                "reference": "379de9bf684125b236f896dae36b6896ec0b42c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/379de9bf684125b236f896dae36b6896ec0b42c3",
+                "reference": "379de9bf684125b236f896dae36b6896ec0b42c3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/collections": "^9.0",
+                "illuminate/contracts": "^9.0",
+                "illuminate/macroable": "^9.0",
+                "illuminate/support": "^9.0",
+                "php": "^8.0.2"
+            },
+            "provide": {
+                "psr/simple-cache-implementation": "1.0|2.0|3.0"
+            },
+            "suggest": {
+                "ext-memcached": "Required to use the memcache cache driver.",
+                "illuminate/database": "Required to use the database cache driver (^9.0).",
+                "illuminate/filesystem": "Required to use the file cache driver (^9.0).",
+                "illuminate/redis": "Required to use the redis cache driver (^9.0).",
+                "symfony/cache": "Required to use PSR-6 cache bridge (^6.0)."
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Cache\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Cache package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2022-01-06T10:06:31+00:00"
         },
         {
             "name": "illuminate/container",
@@ -3318,7 +3379,8 @@
     "stability-flags": {
         "illuminate/support": 20,
         "phpunit/phpunit": 20,
-        "illuminate/database": 20
+        "illuminate/database": 20,
+        "illuminate/cache": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
