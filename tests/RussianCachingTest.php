@@ -15,10 +15,10 @@ class RussianCachingTest extends TestCase2
         $cache = new Repository(new ArrayStore());
         $dolly = new RussianCaching($cache);
 
-        $dolly->cache($post, '<h1>Fragmento para ser cacheado</h1>');
-        $dolly->cache($post2->getCacheKey(), '<h1>Fragmento 2 para ser cacheado</h1>');
+        $dolly->put($post, '<h1>Fragmento para ser cacheado</h1>');
+        $dolly->put($post2->getCacheKey(), '<h1>Fragmento 2 para ser cacheado</h1>');
 
-        $this->assertTrue($dolly->hasCached($post));
-        $this->assertTrue($dolly->hasCached($post2->getCacheKey()));
+        $this->assertTrue($dolly->has($post));
+        $this->assertTrue($dolly->has($post2->getCacheKey()));
     }
 }

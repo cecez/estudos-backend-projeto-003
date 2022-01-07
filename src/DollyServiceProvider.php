@@ -14,7 +14,9 @@ class DollyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(BladeDirective::class, function () {
+            return new BladeDirective();
+        });
     }
 
     /**
@@ -25,11 +27,11 @@ class DollyServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive('cache', function ($expression) {
-            return "<?php if (! Cecez\Dolly\RussianCaching::setUp($expression)) { ?>";
+            return "<?php if (! app('Cecez\Dolly\BladeDirective')->setUp($expression)) { ?>";
         });
 
         Blade::directive('endcache', function () {
-            return "<?php } echo Cecez\Dolly\RussianCaching::tearDown(); ?>";
+            return "<?php } echo app('Cecez\Dolly\BladeDirective')->tearDown(); ?>";
         });
     }
 }
