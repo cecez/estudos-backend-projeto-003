@@ -15,7 +15,9 @@ class DollyServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(BladeDirective::class, function () {
-            return new BladeDirective();
+            return new BladeDirective(
+                new RussianCaching(app('cache.store'))
+            );
         });
     }
 
